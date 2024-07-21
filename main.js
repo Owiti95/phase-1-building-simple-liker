@@ -4,6 +4,28 @@ const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
 
+document.addEventListener('DOMContentLoaded', function() {
+ //selecting all empty hearts
+  const likeButtons = document.querySelectorAll('.like-glyph');
+  //adding event listener to every button
+  likeButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      if (button.textContent === EMPTY_HEART) {
+        mimicServerCall()
+          .then(() => {
+            button.textContent = FULL_HEART;
+            button.classList.add('activated-heart');
+          })
+          .catch(error => {
+            displayError(error);
+          });
+        } else {
+          button.textContent = EMPTY_HEART;
+        button.classList.remove('activated-heart');
+      }
+    });
+});
+});
 
 
 
